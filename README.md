@@ -1,28 +1,25 @@
 # Núcleo IPCVT Planner
 
-Versão inicial do painel local de brainstorm para organizar pessoas entre as áreas do Núcleo IPCVT.
+Painel visual para organizar integrantes do Núcleo IPCVT por áreas e funções.
 
-## Recursos desta versão
+## Versão 0.2
 
-- Banco de pessoas com busca;
-- Cadastro rápido de possíveis integrantes;
-- Arrastar nomes para funções;
-- Uma pessoa pode aparecer em várias funções;
-- Borda verde, amarela ou vermelha conforme a quantidade de funções;
-- Remoção individual de uma função;
-- Salvamento automático no navegador;
-- Layout responsivo.
+- Sincronização online pelo Cloud Firestore.
+- Documento utilizado: `app_ipcvt/planner_dados`.
+- Atualizações em tempo real entre aparelhos.
+- Cópia local mantida como segurança caso a internet falhe.
 
-## Rodar no computador
+## Executar localmente
 
-1. Instale o Node.js.
-2. Abra um terminal dentro da pasta do projeto.
-3. Execute `npm install`.
-4. Execute `npm run dev`.
+```bash
+npm install
+npm run dev
+```
 
-## Publicar na Vercel
+## Publicação
 
-Importe o repositório do GitHub. A Vercel reconhecerá o Vite automaticamente.
+O projeto está preparado para Vite e pode ser publicado na Vercel.
 
-- Build command: `npm run build`
-- Output directory: `dist`
+## Atenção
+
+A conexão online depende das regras do Cloud Firestore permitirem leitura e escrita no documento `app_ipcvt/planner_dados`. A versão inicial ainda não possui autenticação de usuários; adicione login e regras restritas antes de compartilhar o painel amplamente.

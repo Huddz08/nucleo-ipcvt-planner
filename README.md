@@ -38,7 +38,7 @@ O Time A começa com a distribuição da ferramenta anterior como rascunho. Os t
 
 O botão de exportar no topo gera um PDF dos times visíveis, respeitando os filtros. O menu de opções também permite exportar todos os times e núcleos no mesmo PDF. Para guardar os dados editáveis ou transferi-los para outro aparelho, use as opções de backup JSON nesse menu.
 
-As alterações são salvas automaticamente neste navegador. Os dados já salvos na versão anterior são preservados. Esta versão não sincroniza dados pelo Firebase. `src/firebase.js` foi mantido como arquivo legado e não é utilizado. A gravação local antiga, na chave `nucleo-ipcvt-planner-v1`, permanece intacta.
+As alterações são salvas automaticamente neste navegador. Os dados já salvos na versão anterior são preservados. Esta versão não sincroniza dados pelo Firebase. A gravação local antiga, na chave `nucleo-ipcvt-planner-v1`, permanece intacta.
 
 ## Fotos
 

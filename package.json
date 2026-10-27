@@ -10,7 +10,6 @@
     "test": "node --test src/lib/*.test.js"
   },
   "dependencies": {
-    "firebase": "^12.16.0",
     "jspdf": "^4.2.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"

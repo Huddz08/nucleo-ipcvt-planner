@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.pnpm-store/
+.npm-cache/
+output/
+.env*.local
+test-results/

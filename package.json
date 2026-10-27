@@ -1,17 +1,19 @@
 {
   "name": "nucleo-ipcvt-planner",
   "private": true,
-  "version": "0.2.0",
+  "version": "1.5.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "node --test src/lib/*.test.js"
   },
   "dependencies": {
+    "firebase": "^12.16.0",
+    "jspdf": "^4.2.1",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "firebase": "^12.16.0"
+    "react-dom": "^19.1.0"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.6.0",

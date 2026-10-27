@@ -4,7 +4,6 @@ export const areas = [
     name: 'Comissão do Núcleo',
     roles: [
       { id: 'gestao', name: 'Gestão e Coordenação' },
-      { id: 'eventos', name: 'Eventos e Ordem do Culto' },
     ],
   },
   {
@@ -28,7 +27,6 @@ export const areas = [
     id: 'musica',
     name: 'Música',
     roles: [
-      { id: 'repertorio', name: 'Seleção de Repertório' },
       { id: 'soprano', name: 'Soprano' },
       { id: 'contralto', name: 'Contralto' },
       { id: 'tenor', name: 'Tenor' },

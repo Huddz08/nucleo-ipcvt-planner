@@ -1,12 +1,10 @@
 export const initialAssignments = {
   gestao: [],
-  eventos: [],
   som: ['artur', 'elton', 'guilherme'],
   projecao: ['vitor', 'vitoria', 'rodrigo', 'kaua'],
   obs: ['erick', 'kaua', 'lucas', 'samuel'],
   camera: ['lucas', 'manuela'],
   fotografia: ['arlete', 'gabi', 'victor'],
-  repertorio: ['joao-victor', 'liliane'],
   soprano: ['jamylle', 'laura', 'monica', 'arlete'],
   contralto: ['liliane', 'daiane', 'roberta', 'amanda'],
   tenor: ['hudson', 'pastor-eduardo', 'jean-lucas'],

@@ -1,0 +1,172 @@
+.workspace-shell .topbar .sync-status {
+  display: flex;
+  align-items: center;
+  flex: 0 0 30px;
+  width: 30px;
+}
+
+.workspace-shell .topbar .sync-status-indicator {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: #e1ead5;
+  cursor: pointer;
+}
+
+.workspace-shell .topbar .sync-status-indicator:hover {
+  background: #ffffff12;
+}
+
+.workspace-shell .topbar .sync-status-indicator:focus-visible {
+  outline: 2px solid #e4edda;
+  outline-offset: 2px;
+}
+
+.sync-status-dot {
+  position: absolute;
+  right: 2px;
+  bottom: 4px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #cae3af;
+  box-shadow: 0 0 0 2px #365542;
+}
+
+.sync-phase-connecting .sync-status-dot,
+.sync-phase-saving .sync-status-dot {
+  background: #eee1ac;
+  animation: sync-pulse 1.3s ease-in-out infinite;
+}
+
+.sync-phase-offline .sync-status-dot {
+  background: #e6c594;
+}
+
+.sync-phase-error .sync-status-dot,
+.sync-phase-conflict .sync-status-dot,
+.sync-local-error .sync-status-dot {
+  background: #f0b6a3;
+}
+
+.sync-status-details {
+  position: fixed;
+  top: calc(var(--topbar, 52px) + 7px);
+  right: 12px;
+  z-index: 40;
+  width: min(285px, calc(100vw - 24px));
+  padding: 13px 15px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface, #fffef9);
+  color: var(--ink, #303c33);
+  box-shadow: 0 6px 25px var(--shadow, #263a2720);
+  font-size: 11px;
+  line-height: 1.5;
+  white-space: normal;
+}
+
+.sync-status-details strong,
+.sync-notice-content > strong {
+  font-weight: 600;
+}
+
+.sync-status-details p {
+  margin: 5px 0 0;
+  color: var(--ink-secondary, #66735e);
+}
+
+.workspace-shell .sync-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0 0 12px;
+  padding: 12px 14px;
+  border: 1px solid color-mix(in srgb, var(--accent, #9aab89) 55%, var(--line, #e6e7de));
+  border-radius: 7px;
+  background: var(--surface, #fffef9);
+  color: var(--ink-secondary, #66735e);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.workspace-shell .sync-notice > svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.workspace-shell .sync-notice:focus {
+  outline: 2px solid var(--accent, #9aab89);
+  outline-offset: 2px;
+}
+
+.sync-notice-content {
+  min-width: 0;
+}
+
+.sync-notice-content > strong {
+  color: var(--ink, #303c33);
+}
+
+.sync-notice-content p {
+  margin: 3px 0 0;
+}
+
+.sync-notice-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px 12px;
+  margin-top: 9px;
+}
+
+.sync-notice-actions .primary-button,
+.sync-notice-actions .secondary-button {
+  min-height: 30px;
+  padding: 6px 10px;
+  font-size: 10px;
+}
+
+.sync-notice-actions .text-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 0;
+  font-size: 10px;
+  text-align: left;
+}
+
+.workspace-shell .sync-notice-conflict,
+.workspace-shell .sync-notice-error,
+.workspace-shell .sync-notice-local-error {
+  border-color: color-mix(in srgb, var(--danger, #a4563f) 42%, var(--line, #e6e7de));
+  background: var(--danger-bg, #fcf3ea);
+}
+
+@keyframes sync-pulse {
+  50% { opacity: .35; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sync-status-dot { animation: none; }
+}
+
+@media (max-width: 480px) {
+  .workspace-shell .sync-notice {
+    gap: 8px;
+    padding: 10px;
+    font-size: 10px;
+  }
+}
+
+@media print {
+  .sync-status,
+  .workspace-shell .sync-notice { display: none !important; }
+}

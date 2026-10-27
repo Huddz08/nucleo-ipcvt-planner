@@ -1,7 +1,7 @@
 {
   "name": "nucleo-ipcvt-planner",
   "private": true,
-  "version": "1.5.0",
+  "version": "1.6.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,6 +10,7 @@
     "test": "node --test src/lib/*.test.js"
   },
   "dependencies": {
+    "firebase": "12.16.0",
     "jspdf": "^4.2.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"

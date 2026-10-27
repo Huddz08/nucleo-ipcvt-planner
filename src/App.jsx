@@ -4,6 +4,8 @@ import Avatar from './components/Avatar.jsx'
 import PlaybookBackground from './components/PlaybookBackground.jsx'
 import PlannerDialogs from './components/PlannerDialogs.jsx'
 import TeamBoard from './components/TeamBoard.jsx'
+import SyncStatus, { SyncNotice } from './components/SyncStatus.jsx'
+import { useCloudPlanner } from './lib/useCloudPlanner.js'
 import { STORAGE_KEY, allRoles, applyAssignment, normalizePlannerState, personSkills, readPlannerState, removeAssignment } from './lib/planner.js'
 
 const DRAG_TYPE = 'application/x-ipcvt-person'
@@ -36,6 +38,18 @@ export default function App() {
   const [structureGroup, setStructureGroup] = useState(state.groups[0]?.id || '')
   const importRef = useRef(null)
   const menuRef = useRef(null)
+
+  const cloud = useCloudPlanner(state, (next) => {
+    setHistory({ past: [], present: next, future: [] })
+    setSelected(null)
+    setDragging(null)
+    setModal((current) => {
+      if (!current) return null
+      if (current.teamId && !next.teams.some((team) => team.id === current.teamId)) return null
+      if (current.role && !allRoles(next.groups).some((role) => role.id === current.role.id)) return null
+      return current
+    })
+  })
 
   const activeTeam = state.teams.find((team) => team.id === activeTeamId) || state.teams[0]
   const resolvedTeamFilter = state.teams.some((team) => team.id === teamFilter) ? teamFilter : 'all'
@@ -232,7 +246,7 @@ export default function App() {
             <button className="danger-text" disabled={state.teams.length <= 1} onClick={() => openModal({ type: 'deleteTeam', teamId: activeTeam.id })}><Icon name="trash" size={16} />Excluir {activeTeam.name}</button>
           </div>}
         </div>
-        <span className={`save-status ${saveError ? 'save-error' : ''}`} aria-label={saveError ? 'Falha ao salvar' : 'Salvo neste navegador'} title={saveError ? 'Não foi possível salvar. Baixe um backup pelo menu.' : 'Salvo neste navegador'}><Icon name={saveError ? 'help' : 'check-circle'} size={14} /></span>
+        <SyncStatus status={cloud.status} localSaveError={saveError} />
       </div>
     </header>
 
@@ -249,7 +263,7 @@ export default function App() {
 
     <main className="main-content" aria-label="Quadro de planejamento">
       <h1 className="visually-hidden">Planejamento de equipes</h1>
-      {saveError && <div className="storage-alert" role="alert">Não foi possível salvar neste navegador. Baixe um backup pelo menu para guardar suas alterações.</div>}
+      <SyncNotice status={cloud.status} localSaveError={saveError} onRetry={cloud.retry} onUseRemote={cloud.useRemote} onKeepLocal={cloud.keepLocal} onBackup={exportBackup} />
       {selected && <div className="selection-banner" role="status"><Avatar person={peopleById[selected.personId]} size="xs" /><span><strong>{peopleById[selected.personId].name}</strong>: escolha “+” em uma função de qualquer time{selected.fromRoleId ? ' para mover' : ''}.</span><button className="icon-button" aria-label="Cancelar seleção" onClick={() => setSelected(null)}><Icon name="close" size={16} /></button></div>}
       <div className="teams-stack">
         {visibleTeams.map((team) => <TeamBoard

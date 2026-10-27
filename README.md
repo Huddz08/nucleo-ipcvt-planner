@@ -36,9 +36,19 @@ Todos os times aparecem um abaixo do outro e são editáveis no mesmo quadro. Um
 
 O Time A começa com a distribuição da ferramenta anterior como rascunho. Os times B e C começam vazios. Repertório e Eventos foram removidos da estrutura; planejamentos salvos e backups antigos são ajustados ao abrir, preservando o cadastro de pessoas, as outras funções e as anotações. Câmera continua disponível em Mídia.
 
-O botão de exportar no topo gera um PDF dos times visíveis, respeitando os filtros. O menu de opções também permite exportar todos os times e núcleos no mesmo PDF. Para guardar os dados editáveis ou transferi-los para outro aparelho, use as opções de backup JSON nesse menu.
+O botão de exportar no topo gera um PDF dos times visíveis, respeitando os filtros. O menu de opções também permite exportar todos os times e núcleos no mesmo PDF. Para guardar uma cópia dos dados editáveis, use as opções de backup JSON nesse menu. Restaurar um backup também atualiza o planejamento compartilhado.
 
-As alterações são salvas automaticamente neste navegador. Os dados já salvos na versão anterior são preservados. Esta versão não sincroniza dados pelo Firebase. A gravação local antiga, na chave `nucleo-ipcvt-planner-v1`, permanece intacta.
+## Salvamento na rede
+
+As alterações em pessoas, times, funções e anotações são salvas automaticamente no Firebase e aparecem nos outros aparelhos com o Planner aberto. O indicador no topo mostra **Salvo na rede** somente depois da confirmação do servidor. Tema, filtros e visibilidade do menu continuam sendo preferências deste navegador.
+
+Uma cópia local é mantida neste aparelho. Sem conexão, você pode continuar editando; o indicador avisa que as alterações ainda estão locais. Ao reconectar, o Planner verifica a versão da rede antes de enviar as alterações pendentes. Se uma tentativa falhar, use **Tentar novamente** ou baixe um backup.
+
+Na primeira abertura, ou se dois aparelhos alterarem o planejamento durante uma desconexão, podem existir versões diferentes. O Planner pede uma escolha: **Carregar da rede** abre a versão compartilhada; **Usar este planejamento** envia o planejamento atual deste aparelho. Antes da escolha, as duas versões são guardadas em uma cópia de recuperação local. Se essa cópia não puder ser gravada, a troca fica bloqueada para preservar os dados. Um aparelho novo, sem planejamento local, carrega a versão da rede automaticamente.
+
+Ao receber uma versão de outro aparelho, o histórico de desfazer é reiniciado para evitar que uma ação antiga substitua o planejamento atualizado. A gravação local antiga, na chave `nucleo-ipcvt-planner-v1`, permanece intacta.
+
+O projeto usa o Firebase existente, `repertorio-ipcvt`, no documento `app_ipcvt/planner_dados`. A nova versão fica no campo `plannerV2`; os campos da ferramenta anterior são preservados. As gravações usam transações com revisão para detectar alterações concorrentes. Não é necessário criar outro banco nem alterar as regras existentes para usar este projeto.
 
 ## Fotos
 

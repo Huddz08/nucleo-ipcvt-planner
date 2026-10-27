@@ -236,7 +236,7 @@ export function normalizePlannerState(data) {
   }
 }
 
-function migrateLegacyState(data) {
+export function migrateLegacyState(data) {
   if (!isRecord(data) || !Array.isArray(data.people) || !isRecord(data.assignments)) return null
   const peopleIds = new Set()
   const people = []

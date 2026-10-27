@@ -7,6 +7,7 @@ import './workspace.css'
 import './tablet-layout.css'
 import './stacked-layout.css'
 import './fitted-layout.css'
+import './sync-status.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
